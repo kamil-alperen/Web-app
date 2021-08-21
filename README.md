@@ -1,1 +1,1 @@
-Satranç oyunu(henüz bitmedi)
+Satranç oyunu. Henüz bitmedi ama oynanabilir.
