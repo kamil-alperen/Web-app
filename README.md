@@ -1,0 +1,1 @@
+Satranç oyunu(henüz bitmedi)

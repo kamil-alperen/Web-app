@@ -1,0 +1,196 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 32px;
+}
+html {
+    background-image: url('../images/newgame_background.jpg');
+    background-position: center;
+    background-repeat: none;
+    background-size: cover;
+}
+.field {
+    width: 16em;
+    margin-left: auto;
+    margin-right: auto;
+    height: 16em;
+    position: relative;
+    margin-top: 3em;
+}
+.table {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin-left: auto;
+    display: grid;
+    margin-right: auto;
+    grid-template-columns: auto auto auto auto auto auto auto auto;
+    background-color: #2196F3;
+    border: 1px solid black;
+    
+}
+.square {
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    display: inline-grid;
+    height: 2em;
+    cursor: pointer;
+    
+}
+.square:nth-child(16n+2){
+    background-color: #d18b47;
+}
+.square:nth-child(16n+4){
+    background-color: #d18b47;
+}
+.square:nth-child(16n+6){
+    background-color: #d18b47;
+}
+.square:nth-child(16n+8){
+    background-color: #d18b47;
+}
+.square:nth-child(16n+9){
+    background-color: #d18b47;
+}
+.square:nth-child(16n+11){
+    background-color: #d18b47;
+}
+.square:nth-child(16n+13){
+    background-color: #d18b47;
+}
+.square:nth-child(16n+15){
+    background-color: #d18b47;
+}
+.square:nth-child(16n+1){
+    background-color: #ffce9e;
+}
+.square:nth-child(16n+3){
+    background-color: #ffce9e;
+}
+.square:nth-child(16n+5){
+    background-color: #ffce9e;
+}
+.square:nth-child(16n+7){
+    background-color: #ffce9e;
+}
+.square:nth-child(16n+10){
+    background-color: #ffce9e;
+}
+.square:nth-child(16n+12){
+    background-color: #ffce9e;
+}
+.square:nth-child(16n+14){
+    background-color: #ffce9e;
+}
+.square:nth-child(16n+16){
+    background-color: #ffce9e;
+}
+
+
+
+
+.square1 {
+    background-image: url('../images/black_castle.png');
+}
+.square2 {
+    background-image: url('../images/black_horse.png');
+}
+.square3 {
+    background-image: url('../images/black_elephant.png');
+}
+.square4 {
+    background-image: url('../images/black_queen.png');
+}
+.square5 {
+    background-image: url('../images/black_king.png');
+}
+.square6 {
+    background-image: url('../images/black_elephant.png');
+}
+.square7 {
+    
+    background-image: url('../images/black_horse.png');
+}
+.square8 {
+    background-image: url('../images/black_castle.png');
+}
+.square9 {
+    background-image: url('../images/black_pawn.png');  
+}
+.square10 {
+    background-image: url('../images/black_pawn.png');
+}
+.square11 {
+    background-image: url('../images/black_pawn.png');
+}
+.square12 {
+    background-image: url('../images/black_pawn.png');
+}
+.square13 {
+    background-image: url('../images/black_pawn.png');
+}
+.square14 {
+    background-image: url('../images/black_pawn.png');
+}
+.square15 {
+    background-image: url('../images/black_pawn.png');
+}
+.square16 {
+    background-image: url('../images/black_pawn.png');
+}
+.square57 {
+    background-image: url('../images/white_castle.png');
+}
+.square58 {
+    background-image: url('../images/white_horse.png');
+}
+.square59 {
+    background-image: url('../images/white_elephant.png');
+}
+.square60 {
+    background-image: url('../images/white_queen.png');
+}
+.square61 {
+    background-image: url('../images/white_king.png');
+}
+.square62 {
+    background-image: url('../images/white_elephant.png');
+}
+.square63 {
+    
+    background-image: url('../images/white_horse.png');
+}
+.square64 {
+    background-image: url('../images/white_castle.png');
+}
+.square49 {
+    background-image: url('../images/white_pawn.png');  
+}
+.square50 {
+    background-image: url('../images/white_pawn.png');
+}
+.square51 {
+    background-image: url('../images/white_pawn.png');
+}
+.square52 {
+    background-image: url('../images/white_pawn.png');
+}
+.square53 {
+    background-image: url('../images/white_pawn.png');
+}
+.square54 {
+    background-image: url('../images/white_pawn.png');
+}
+.square55 {
+    background-image: url('../images/white_pawn.png');
+}
+.square56 {
+    background-image: url('../images/white_pawn.png');
+}
+
+.right-slide {
+    right: 0;
+    width: 10%;
+    height: 100%;
+    background-color: #d18b47;
+}
