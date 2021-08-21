@@ -1,2 +1,2 @@
 Satranç oyunu. Henüz bitmedi ama oynanabilir.
-https://git.heroku.com/first-web-app-chess-game.git
+https://first-web-app-chess-game.herokuapp.com
