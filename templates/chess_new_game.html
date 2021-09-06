@@ -8,6 +8,7 @@
     <title>Document</title>
 </head>
 <body>
+    <div class="background"></div>
     <div class="field">
         <div class="table">
             <div class="square1 square"></div>
@@ -76,11 +77,41 @@
             <div class="square64 square"></div>
         </div>
     </div>
-    <div class="right-slide">
-        <div id="flex-bar">
 
+    <div class="side-bar">
+        <a href="/new_game"><div class="new-game">New Game</div></a>
+        <div class="save-game">Save Game</div>
+        <div class="left-expand"></div>
+        <div class="side-menu">
+            <div class="finish-game"></div>
+            <div class="settings"></div>
+            <a href="/">
+                <div class="exit"></div>
+            </a>
         </div>
     </div>
+    <div class="pop-up-finish-game">
+        <div class="pop-up-top"></div>
+    </div>
+    <div class="pop-up-settings"></div>
+    <div class="pop-up-saved">
+        <div class="pop-up-top"></div>
+        <div class="rows">
+            <div class="row1">
+                <input id="player1" type="text" name="player1" placeholder="Player1 name">
+                <input id="player2" type="text" name="player2" placeholder="Player2 name">
+            </div>
+            <div class="row2">
+                <input id="gamename" type="text" name="game_name" placeholder="Game name">
+                <input id="descr" type="text" name="description" placeholder="Description">
+            </div>
+            <div class="row3">
+                <input id="clearbtn" type="button" name="clear" value="Clear">
+                <input id="submitbtn" type="submit" name="submit" value="Submit">
+            </div>
+        </div>
+    </div>
+    <div class="pop-up-success"></div>
     <script src="../static/js/chess_new_game.js"></script>
 </body>
 </html>
