@@ -98,7 +98,8 @@ fetch('/api/chessgame/saveTable')
         game_id = data.id
         leftCenterSide.textContent = turn.toUpperCase()
         for(let i = 0;i < Object.keys(new_squares).length;i++){
-            squares[i].style.backgroundImage = new_squares[i].backImage
+            backgroundImage = new_squares[i].backImage.replace('http://localhost:5000/','')
+            squares[i].style.backgroundImage = backgroundImage
             squares[i].moved = new_squares[i].moved
         }
     }

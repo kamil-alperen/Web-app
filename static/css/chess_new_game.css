@@ -30,12 +30,12 @@ body {
     
 }
 .field {
-    width: 16em;
-    margin-left: auto;
-    margin-right: auto;
-    height: 16em;
+    position: absolute;
+    width: 37%;
+    margin: auto;
+    height: 30%;
     position: relative;
-    margin-top: 2.5em;
+    top : 12%;
 }
 .table {
     position: absolute;
