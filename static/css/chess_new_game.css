@@ -108,104 +108,104 @@ body {
 
 
 
-.square1 {
-    background-image: url('../images/black_castle.png');
+/* .square1 {
+    background-image: url('static/images/black_castle.png');
 }
 .square2 {
-    background-image: url('../images/black_horse.png');
+    background-image: url('static/images/black_horse.png');
 }
 .square3 {
-    background-image: url('../images/black_elephant.png');
+    background-image: url('static/images/black_elephant.png');
 }
 .square4 {
-    background-image: url('../images/black_queen.png');
+    background-image: url('static/images/black_queen.png');
 }
 .square5 {
-    background-image: url('../images/black_king.png');
+    background-image: url('static/images/black_king.png');
 }
 .square6 {
-    background-image: url('../images/black_elephant.png');
+    background-image: url('static/images/black_elephant.png');
 }
 .square7 {
     
-    background-image: url('../images/black_horse.png');
+    background-image: url('static/images/black_horse.png');
 }
 .square8 {
-    background-image: url('../images/black_castle.png');
+    background-image: url('static/images/black_castle.png');
 }
 .square9 {
-    background-image: url('../images/black_pawn.png');  
+    background-image: url('static/images/black_pawn.png');  
 }
 .square10 {
-    background-image: url('../images/black_pawn.png');
+    background-image: url('static/images/black_pawn.png');
 }
 .square11 {
-    background-image: url('../images/black_pawn.png');
+    background-image: url('static/images/black_pawn.png');
 }
 .square12 {
-    background-image: url('../images/black_pawn.png');
+    background-image: url('static/images/black_pawn.png');
 }
 .square13 {
-    background-image: url('../images/black_pawn.png');
+    background-image: url('static/images/black_pawn.png');
 }
 .square14 {
-    background-image: url('../images/black_pawn.png');
+    background-image: url('static/images/black_pawn.png');
 }
 .square15 {
-    background-image: url('../images/black_pawn.png');
+    background-image: url('static/images/black_pawn.png');
 }
 .square16 {
-    background-image: url('../images/black_pawn.png');
+    background-image: url('static/images/black_pawn.png');
 }
 .square57 {
-    background-image: url('../images/white_castle.png');
+    background-image: url('static/images/white_castle.png');
 }
 .square58 {
-    background-image: url('../images/white_horse.png');
+    background-image: url('static/images/white_horse.png');
 }
 .square59 {
-    background-image: url('../images/white_elephant.png');
+    background-image: url('static/images/white_elephant.png');
 }
 .square60 {
-    background-image: url('../images/white_queen.png');
+    background-image: url('static/images/white_queen.png');
 }
 .square61 {
-    background-image: url('../images/white_king.png');
+    background-image: url('static/images/white_king.png');
 }
 .square62 {
-    background-image: url('../images/white_elephant.png');
+    background-image: url('static/images/white_elephant.png');
 }
 .square63 {
     
-    background-image: url('../images/white_horse.png');
+    background-image: url('static/images/white_horse.png');
 }
 .square64 {
-    background-image: url('../images/white_castle.png');
+    background-image: url('static/images/white_castle.png');
 }
 .square49 {
-    background-image: url('../images/white_pawn.png');  
+    background-image: url('static/images/white_pawn.png');  
 }
 .square50 {
-    background-image: url('../images/white_pawn.png');
+    background-image: url('static/images/white_pawn.png');
 }
 .square51 {
-    background-image: url('../images/white_pawn.png');
+    background-image: url('static/images/white_pawn.png');
 }
 .square52 {
-    background-image: url('../images/white_pawn.png');
+    background-image: url('static/images/white_pawn.png');
 }
 .square53 {
-    background-image: url('../images/white_pawn.png');
+    background-image: url('static/images/white_pawn.png');
 }
 .square54 {
-    background-image: url('../images/white_pawn.png');
+    background-image: url('static/images/white_pawn.png');
 }
 .square55 {
-    background-image: url('../images/white_pawn.png');
+    background-image: url('static/images/white_pawn.png');
 }
 .square56 {
-    background-image: url('../images/white_pawn.png');
-}
+    background-image: url('static/images/white_pawn.png');
+} */
 
 .side-bar{
     position: absolute;
@@ -239,60 +239,50 @@ body {
 
 }
 .finish-game{
-    width: auto;
-    height: 25%;
-    margin: 3.5vh 3.3vw;
-    margin-right: 3vw;
-    background-image: url("../images/finish.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    cursor: pointer;
+    position: absolute;
+    top : 27%;
+    left: 1em;
+    right : 1em;
+    height : auto;
+    font-size: 18px;
+    margin-left: 0.75em;
+    padding: 1em;
+    border: 2px solid white;
+    border-radius: 8px;
+    text-align: center;
+    display: none;
+    color : white;
 }
 .finish-game:hover {
-    margin-left : 3.1vw;
-    margin-right: 2.8vw;
-    margin-top: 3.5vh;
-    margin-bottom: 3.3vh;
-}
-.settings {
-    width: auto;
-    height: 20%;
-    margin: 3.5vh 3.3vw;
-    
-    
-    background-image: url("../images/settings.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
+    background-color: white;
+    color: black;
     cursor: pointer;
 }
-.settings:hover {
-    margin : 0 0;
-    width: auto;
-}
+
 .exit {
-    width: auto;
-    height: 20%;
-    margin: 3.5vh 3.3vw;
-    margin-right: 2.4vw;
-    
-    background-image: url("../images/exit.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    cursor: pointer;
+    position: absolute;
+    bottom : 5%;
+    left: 1em;
+    right : 1em;
+    height : auto;
+    font-size: 18px;
+    margin-left: 0.75em;
+    padding: 1.5em 1em;
+    border: 2px solid white;
+    border-radius: 8px;
+    text-align: center;
+    display: none;
+    color : white;
 }
 .exit:hover {
-    margin : 3.5vh 0;
-    margin-left: 0.9vw;
-    height: 22%;
-    width: auto;
+    background-color: white;
+    color: black;
+    cursor: pointer;
 }
 .pop-up-finish-game {
     position: absolute;
     top:25%;
-    bottom: 25%;
+    bottom: 30%;
     left:25%;
     right:25%;
     width: auto;
@@ -319,27 +309,6 @@ body {
     width: 100%;
     height: 20%;
     background-color: black;
-    
-}
-.pop-up-settings {
-    position: absolute;
-    top:25%;
-    bottom: 25%;
-    left:25%;
-    right:25%;
-    width: auto;
-    height: auto;
-    display: none;
-    border-radius: 2vw;
-    padding: 3vw;
-    padding-top: 8vw;
-    line-height: 150%;
-    background-image: url("../images/pop_up_background.jpg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    box-shadow: 10px 10px 6px black;
-    color: white;
     
 }
 .pop-up-saved , .pop-up-success{
@@ -369,7 +338,7 @@ body {
 }
 .new-game {
     position: absolute;
-    top : 10%;
+    top : 5%;
     left: 1em;
     right : 1em;
     height : auto;
@@ -384,7 +353,7 @@ body {
 }
 .save-game {
     position: absolute;
-    top : 25%;
+    top : 20%;
     left: 1em;
     right : 1em;
     height : auto;
@@ -465,4 +434,34 @@ body {
 #clearbtn:active, #submitbtn:active {
     opacity: 1;
     box-shadow: 2px 2px 0px black;
+}
+.left-side {
+    position: absolute;
+    left : 5%;
+    top : 40%;
+    width : 15%;
+    height : 20%;
+    background-color: white;
+    border-radius: 5%;
+}
+.top-side {
+    background-color: black;
+    position: absolute;
+    top: 0;
+    height : 40%;
+    width : 100%;
+    border-top-left-radius: 5%;
+    border-top-right-radius: 5%;
+    color: white;
+    font-size: 24px;
+    text-align: center;
+    padding-top: 5%;
+}
+.center-side {
+    color: black;
+    position: absolute;
+    top : 40%;
+    padding-top: 10%;
+    width: 100%;
+    text-align: center;
 }

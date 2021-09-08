@@ -2,14 +2,44 @@ let squares = document.getElementsByClassName("square")
 let clickedSquare = {}
 let suitableElements = []
 let table = []
-let turn = "white"
-for(let i = 0;i < 8;i++){
-    num1 = i + 1 + 8
-    num2 = i + 1 + 48
-    squares[num1].moved = false
-    squares[num2].moved = false
-}
+let fields_list = []
+let turn = ''
+let game_id = 0
+
 function fillTable(){
+    turn = "white"
+    leftCenterSide.textContent = turn.toUpperCase()
+    squares[0].style.backgroundImage = "url('static/images/black_castle.png')"
+    squares[1].style.backgroundImage = "url('static/images/black_horse.png')"
+    squares[2].style.backgroundImage = "url('static/images/black_elephant.png')"
+    squares[3].style.backgroundImage = "url('static/images/black_queen.png')"
+    squares[4].style.backgroundImage = "url('static/images/black_king.png')"
+    squares[5].style.backgroundImage = "url('static/images/black_elephant.png')"
+    squares[6].style.backgroundImage = "url('static/images/black_horse.png')"
+    squares[7].style.backgroundImage = "url('static/images/black_castle.png')"
+    for(let i = 8;i < 16;i++){
+        squares[i].style.backgroundImage = "url('static/images/black_pawn.png')"
+    }
+    for(let i = 48;i < 56;i++){
+        squares[i].style.backgroundImage = "url('static/images/white_pawn.png')"
+    }
+    squares[56].style.backgroundImage = "url('static/images/white_castle.png')"
+    squares[57].style.backgroundImage = "url('static/images/white_horse.png')"
+    squares[58].style.backgroundImage = "url('static/images/white_elephant.png')"
+    squares[59].style.backgroundImage = "url('static/images/white_queen.png')"
+    squares[60].style.backgroundImage = "url('static/images/white_king.png')"
+    squares[61].style.backgroundImage = "url('static/images/white_elephant.png')"
+    squares[62].style.backgroundImage = "url('static/images/white_horse.png')"
+    squares[63].style.backgroundImage = "url('static/images/white_castle.png')"
+    
+
+    for(let i = 0;i < 8;i++){
+        num1 = i + 1 + 8
+        num2 = i + 1 + 48
+        squares[num1].moved = false
+        squares[num2].moved = false
+    }
+
     row1 = ["black_castle1","black_horse1","black_elephant1","black_queen1","black_king1","black_elephant2","black_horse2","black_castle2"]
     row8 = ["white_castle1","white_horse1","white_elephant1","white_queen1","white_king1","white_elephant2","white_horse2","white_castle2"]
     row2 = []
@@ -30,39 +60,85 @@ function fillTable(){
     }
     table.push(row7)
     table.push(row8)
+}
+
+function setSquares(){
     for(let i = 0;i < squares.length;i++){
         squares[i].originalBackgroundColor = getComputedStyle(squares[i]).backgroundColor
     }
+
+    for(let i = 0;i < squares.length;i++){
+        squares[i].addEventListener("click", squares[i].firstClickEvent = () => {
+            if(checkTurn(findPiece(squares[i]))){ 
+                if(clickedSquare.element){
+                    clickedSquare.element.style.backgroundColor = clickedSquare.originalBackgroundColor
+                }
+                clickedSquare = {
+                    element : squares[i],
+                    originalBackgroundColor : squares[i].originalBackgroundColor
+                }
+                squares[i].style.backgroundColor = "yellow"
+                if(suitableElements.find(arrEl => arrEl.element === squares[i])){
+                    suitableElements.find(arrEl => arrEl.element === squares[i]).oldBackgroundColor = "yellow"
+                }
+                findAllCapabilities(squares[i])
+            }
+        })
+    }
 }
-fillTable()
 
-
+fetch('/api/chessgame/saveTable')
+.then(response => response.json())
+.then(data => {
+    if(data !== ''){
+        table = data.table
+        new_squares = data.squares
+        turn = data.turn
+        fields_list = data.fields_list
+        game_id = data.id
+        leftCenterSide.textContent = turn.toUpperCase()
+        for(let i = 0;i < Object.keys(new_squares).length;i++){
+            squares[i].style.backgroundImage = new_squares[i].backImage
+            squares[i].moved = new_squares[i].moved
+        }
+    }
+    else {
+        fillTable()
+    }
+})
+setSquares()
 expandToLeft_element = document.querySelector(".left-expand")
 rightSideBar_element = document.querySelector(".side-bar")
 saveGame_element = document.querySelector(".save-game")
 newGame_element = document.querySelector(".new-game")
+finishGame_element = document.querySelector(".finish-game")
+exit_element = document.querySelector(".exit")
+
 expandToLeft_element.addEventListener("mouseenter", (e) => {
     el = rightSideBar_element
     el.style.backgroundColor = "black"
     el.style.width = "10%"
     saveGame_element.style.setProperty("display","inline-block")
     newGame_element.style.setProperty("display","inline-block")
+    finishGame_element.style.setProperty("display","inline-block")
+    exit_element.style.setProperty("display","inline-block")
     expandToLeft_element.style.transform = "rotateY(180deg)"
 })
+
 rightSideBar_element.addEventListener("mouseleave", (e) => {
     el = rightSideBar_element
     el.style.removeProperty('background-color')
     el.style.setProperty('width','3%')
     saveGame_element.style.setProperty("display","none")
     newGame_element.style.setProperty("display","none")
+    finishGame_element.style.setProperty("display","none")
+    exit_element.style.setProperty("display","none")
     expandToLeft_element.style.removeProperty('transform')
 })
 
-finishGame_element = document.querySelector(".finish-game")
-settings_element = document.querySelector(".settings")
+
 saved_element = document.querySelector(".save-game")
 popUpFinish = document.querySelector(".pop-up-finish-game")
-popUpSettings = document.querySelector(".pop-up-settings")
 popUpSaved = document.querySelector(".pop-up-saved")
 popUpTop = document.querySelector(".pop-up-top")
 clearBtn = document.querySelector("#clearbtn")
@@ -72,6 +148,9 @@ field2 = document.querySelector("#player2")
 field3 = document.querySelector("#gamename")
 field4 = document.querySelector("#descr")
 popUpSuccess = document.querySelector('.pop-up-success')
+leftCenterSide = document.querySelector('.center-side')
+
+
 
 clearBtn.addEventListener('click', (e) => {
     field1.value = ''
@@ -79,36 +158,108 @@ clearBtn.addEventListener('click', (e) => {
     field3.value = ''
     field4.value = ''
 })
+
+
 submitBtn.addEventListener('click',(e) => {
     if(field3.value === ''){
         field3.style.setProperty('border','5px solid red')
     }
+    else if(game_id != 0){
+        for(let i = 0;i < squares.length;i++){
+            squares[i].backImage = squares[i].style.backgroundImage
+        }
+        info1 = {
+            id : game_id,
+            table : table,
+            squares : squares,
+            turn : turn
+        }
+        fetch('/api/chessgame/saveTable',{
+            method : 'PUT',
+			headers: {
+   		        	'Content-Type': 'application/json',
+  			},
+  			body: JSON.stringify(info1)
+        }).then(response => {
+            return response.json()
+        }).then(data => {
+            game_id = data.id
+            info2 = {
+                field1 : field1.value,
+                field2 : field2.value,
+                field3 : field3.value,
+                field4 : field4.value
+            }
+            fetch(`/api/chessgame/saveInfo/0/${game_id}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body : JSON.stringify(info2)
+            }).then(response => response.json())
+            .then(data => {
+                fields_list = data.fields_list
+                game_id = data.id
+            })
+        })
+        popUpSaved.style.display = 'none'
+        popUpSuccess.textContent = 'Game is saved successfully'
+        popUpSuccess.style.display = 'block'
+        e.stopPropagation()
+    }
     else {
-        fetch('/api/chessgame/table',{
+        for(let i = 0;i < squares.length;i++){
+            squares[i].backImage = squares[i].style.backgroundImage
+        }
+        info = {
+            table : table,
+            squares : squares,
+            turn : turn
+        }
+        info2 = {
+            field1 : field1.value,
+            field2 : field2.value,
+            field3 : field3.value,
+            field4 : field4.value
+        }
+        fetch('/api/chessgame/saveTable',{
             method : 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body : JSON.stringify(table)
+            body : JSON.stringify(info)
         }).then(response => response.json())
-        .then(data => console.log(data))
+        .then(data => {
+            game_id = data.id
+            fetch(`/api/chessgame/saveInfo/0/${game_id}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body : JSON.stringify(info2)
+            }).then(response => response.json())
+            .then(data => {
+                fields_list = data.fields_list
+                game_id = data.id
+            })
+        })
+
         popUpSaved.style.display = 'none'
         popUpSuccess.textContent = 'Game is saved successfully'
         popUpSuccess.style.display = 'block'
         e.stopPropagation()
     }
 })
-settings_element.addEventListener('click', (e) => {
-    popUpSettings.style.display = 'block'
-    popUpTop.style.setProperty('text-align','center')
-    popUpTop.textContent = 'Settings'
-    popUpTop.style.setProperty('padding-top','0.2em')
-    popUpSettings.appendChild(popUpTop)
-    e.stopPropagation()
-})
 
 saved_element.addEventListener('click', (e) => {
     popUpSaved.style.display = 'block'
+    if(Object.keys(fields_list).length > 0){
+        submitBtn.value = 'Update'
+        field1.value = fields_list.field1
+        field2.value = fields_list.field2
+        field3.value = fields_list.field3
+        field4.value = fields_list.field4
+    }
     popUpTop.style.setProperty('text-align','center')
     popUpTop.textContent = 'Save Game'
     popUpTop.style.setProperty('padding-top','0.2em')
@@ -182,9 +333,6 @@ document.getElementById("html").onclick = (event) => {
     if(event.target !== popUpFinish && event.target !== popUpTop){
         popUpFinish.style.display = "none"
     }
-    if(par_par !== popUpSettings && event.target !== popUpTop && par_par_par !== popUpSettings){
-        popUpSettings.style.display = "none"
-    }
     if(par_par !== popUpSaved && event.target !== popUpTop && par_par_par !== popUpSaved){
         popUpSaved.style.display = "none"
     }
@@ -198,25 +346,6 @@ document.getElementById("html").onclick = (event) => {
             field4.value = ''
         }
     }
-}
-
-for(let i = 0;i < squares.length;i++){
-    squares[i].addEventListener("click", squares[i].firstClickEvent = () => {
-        if(checkTurn(findPiece(squares[i]))){ 
-            if(clickedSquare.element){
-                clickedSquare.element.style.backgroundColor = clickedSquare.originalBackgroundColor
-            }
-            clickedSquare = {
-                element : squares[i],
-                originalBackgroundColor : squares[i].originalBackgroundColor
-            }
-            squares[i].style.backgroundColor = "yellow"
-            if(suitableElements.find(arrEl => arrEl.element === squares[i])){
-                suitableElements.find(arrEl => arrEl.element === squares[i]).oldBackgroundColor = "yellow"
-            }
-            findAllCapabilities(squares[i])
-        }
-    })
 }
 
 function findAllCapabilities(squareElement){
@@ -253,6 +382,7 @@ function findAllCapabilities(squareElement){
         movePiece()
     }
 }
+
 function movePiece(){
     for(let i = 0;i < suitableElements.length;i++){
         suitableElements[i].element.removeEventListener("click", suitableElements[i].element.firstClickEvent);
@@ -268,12 +398,15 @@ function movePiece(){
             restoreSuitableElements()
             turn = turn === "white" ? "black" : "white"
             isGameOver()
+
+            leftCenterSide.textContent = turn.toUpperCase()
             
             
         });
     }
     
 }
+
 function isGameOver(){
     white_king = "white_king1"
     black_king = "black_king1"
@@ -290,15 +423,17 @@ function isGameOver(){
         }
     }
     if(white_win || black_win){
+        popUpSuccess.style.display = 'block'
         if(white_win){
-            console.log("WHITE WIN");
+            popUpSuccess.textContent = 'Winner : White'
         }
         else {
-            console.log("BLACK WIN");
+            popUpSuccess.textContent = 'Winner : Black'
         }
         turn = "GAME OVER"
     }
 }
+
 function restoreOnclickEvents(){
     for(let object of suitableElements){
         object.element.removeEventListener("click", object.element.secondClickEvent);
@@ -306,6 +441,7 @@ function restoreOnclickEvents(){
         
     }
 }
+
 function restoreTable(index){
     old_className = clickedSquare.element.className
     old_classNumber = parseInt(old_className.substring(6))
@@ -319,6 +455,7 @@ function restoreTable(index){
     table[new_position_y][new_position_x] = piece
 
 }
+
 function restoreSuitableElements(){
     restoreOnclickEvents()
     for(let i = 0;i < suitableElements.length;i++){
@@ -328,6 +465,7 @@ function restoreSuitableElements(){
     suitableElements = []
     
 }
+
 function findPiece(squareElement){
     className = squareElement.className
     firstClass = className.substring(0, className.indexOf(" "))
@@ -340,6 +478,7 @@ function findPiece(squareElement){
     return [color, name, position_x, position_y]
     
 }
+
 function findElement(position_x, position_y){
     let squareNumber = position_x + (position_y-1) * 8
     if(squares[squareNumber].moved == false){
@@ -349,6 +488,7 @@ function findElement(position_x, position_y){
         return false
     }
 }
+
 function determineMoveFunction(color, name){
     name = name.substring(0, name.length-1)
     if(name === "castle"){
@@ -697,6 +837,7 @@ function determineMoveFunction(color, name){
         return null
     }
 }
+
 function checkTurn(arr){
     [color, , , ] = arr
     if(color === turn || !color){
