@@ -128,6 +128,7 @@ class SaveInformation(Resource):
             send_data = {
                 'url' : '/new_game'
             }
+            
             return jsonify(send_data)
         else : 
             totalLength = len(Table.query.all())

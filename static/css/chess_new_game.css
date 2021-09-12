@@ -30,12 +30,12 @@ body {
     
 }
 .field {
-    position: absolute;
-    width: 37%;
-    margin: auto;
-    height: 30%;
     position: relative;
-    top : 12%;
+    width: 37vw;
+    margin: auto;
+    height: 37vw;
+    top : 50%;
+    transform: translateY(-50%);
 }
 .table {
     position: absolute;
@@ -333,7 +333,7 @@ body {
     top: 42%;
     bottom: 42%;
     text-align: center;
-    padding-top: 0.8em;
+    padding-top: 4vh;
     box-shadow: 0px 0px;
 }
 .new-game {
