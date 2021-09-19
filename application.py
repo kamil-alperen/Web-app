@@ -10,12 +10,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///chess_database.db'
 api = Api(app)
 db = SQLAlchemy(app)
 
-request_pieces_list = None
-request_squares = None
-request_turn = None
-request_fields_list = None
-game_id = None
-
 @app.route("/")
 def home():
     return render_template("chess_index.html")
@@ -41,19 +35,19 @@ class Table(db.Model):
 
 
 class SaveTable(Resource):
+    request_pieces_list = None
+    request_squares = None
+    request_turn = None
+    request_fields_list = None
+    game_id = None
     def get(self):
-        global request_pieces_list
-        global request_squares
-        global request_turn
-        global request_fields_list
-        global game_id 
-        if request_pieces_list != None:
+        if SaveTable.request_pieces_list != None:
             send_data = {
-                'table': request_pieces_list,
-                'squares' : request_squares,
-                'turn' : request_turn,
-                'fields_list' : request_fields_list,
-                'id' : game_id
+                'table': SaveTable.request_pieces_list,
+                'squares' : SaveTable.request_squares,
+                'turn' : SaveTable.request_turn,
+                'fields_list' : SaveTable.request_fields_list,
+                'id' : SaveTable.game_id
             }
             request_pieces_list = None
             return jsonify(send_data)
@@ -113,18 +107,13 @@ saveInfo_args.add_argument('field4',type=str, required = True)
 
 class SaveInformation(Resource):
     def get(self, page, id):
-        global request_pieces_list
-        global request_squares
-        global request_turn
-        global request_fields_list
-        global game_id
         if id != 0:
             game_table = Table.query.filter_by(id = id).first()
-            request_pieces_list = json.loads(game_table.pieces_list)
-            request_squares = json.loads(game_table.squares)
-            request_turn = json.loads(game_table.turn)
-            request_fields_list = json.loads(game_table.fields_list)
-            game_id = game_table.id
+            SaveTable.request_pieces_list = json.loads(game_table.pieces_list)
+            SaveTable.request_squares = json.loads(game_table.squares)
+            SaveTable.request_turn = json.loads(game_table.turn)
+            SaveTable.request_fields_list = json.loads(game_table.fields_list)
+            SaveTable.game_id = game_table.id
             send_data = {
                 'url' : '/new_game'
             }
