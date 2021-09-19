@@ -49,7 +49,7 @@ class SaveTable(Resource):
                 'fields_list' : SaveTable.request_fields_list,
                 'id' : SaveTable.game_id
             }
-            request_pieces_list = None
+            SaveTable.request_pieces_list = None
             return jsonify(send_data)
         else :
             return jsonify('')
